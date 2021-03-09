@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { isNumeric, totalWishes } from '../utils/helpers'
-import { pageMessage, wishMessage } from '../constants/messages'
+import { pageMessage, wishMessage, numOfWishesToPity, currNumOfWishes, pleaseEnterNum } from '../constants/messages'
 import { css } from '@emotion/css'
 
 interface IValues {
@@ -66,10 +66,10 @@ const App = (): JSX.Element => {
         </label>
 
         <p>
-          {isAllowed
-            ? `You have done ${wishResult} wishes`
-            : 'Please enter a number'}
-        </p>
+          {isAllowed && isInLimit
+            ? currNumOfWishes.replace('$1', `${wishResult}`)
+            : pleaseEnterNum}
+        </p>{isAllowed && isInLimit && <p>{numOfWishesToPity.replace('$1', `${90-wishResult}`)}</p>}
       </form>
 	  </div>
   )
