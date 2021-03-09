@@ -13,9 +13,7 @@ import React from 'react'
 //   </div>
 // )
 
-const App = (): JSX.Element => (
-  <div>Hello</div>
-)
+const App = (): JSX.Element => <div>Hello</div>
 
 // const appStyle = css`
 //   /* background-color: green; */
