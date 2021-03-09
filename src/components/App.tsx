@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { isNumeric, totalWishes } from '../utils/helpers'
+import { pageMessage, wishMessage } from '../constants/messages'
 import { css } from '@emotion/css'
-
-const pageMessage = 'Which page was your last 5⭑? '
-const wishMessage = 'Which wish was the last 5⭑ on that page? '
 
 interface IValues {
 	wishes: string;
@@ -12,12 +10,19 @@ interface IValues {
 
 const App = (): JSX.Element => {
   const [values, setValues] = useState<IValues>({ page: '', wishes: '' })
-  const [wishResult, setWishResult] = useState(0)
-  const [isAllowed, setIsAllowed] = useState(true)
+  const [wishResult, setWishResult] = useState<number>(0)
+  const [isAllowed, setIsAllowed] = useState<boolean>(true)
+  const [isInLimit, setIsInLimit] = useState<boolean>(true)
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setValues({ ...values, [name]: value })
+  }
+
+  const checkLimit = (wishes: string) => {
+    const currWishes = parseInt(wishes) || 1
+    const result = currWishes <= 6 && currWishes >= 1
+    setIsInLimit(result)
   }
 
   const resolveResult = (page: string, wishes: string) => {
@@ -34,6 +39,7 @@ const App = (): JSX.Element => {
 
   useEffect(() => {
     resolveResult(values.page, values.wishes)
+    checkLimit(values.wishes)
   })
 
   return (
@@ -56,7 +62,7 @@ const App = (): JSX.Element => {
             name="wishes"
             value={values.wishes}
             onChange={handleChange}
-          />
+          /> {!isInLimit && <span className={errorStyle}>{`Should be between 1 and 6`}</span>}
         </label>
 
         <p>
@@ -67,7 +73,6 @@ const App = (): JSX.Element => {
       </form>
 	  </div>
   )
-
 }
 
 const appStyle = css`
@@ -84,5 +89,9 @@ const labelStyle = css`
 	p{
 		padding-bottom: .2em;
 	}
+`
+
+const errorStyle = css`
+	color: red;
 `
 export default App
