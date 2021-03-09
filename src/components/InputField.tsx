@@ -17,7 +17,7 @@ const InputField = (props: IInputField): JSX.Element => {
     <label className={labelStyle}>
       <p>{title}</p>
       <input
-        type="text"
+        type="number"
         name={name}
         value={value}
         onChange={onChangeHandle}
