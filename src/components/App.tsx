@@ -8,6 +8,52 @@ interface IValues {
 	page: string;
 }
 
+interface IInputField {
+	title: string;
+	name: string
+	value: string;
+	isInLimit?: boolean;
+	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+}
+
+const InputField = (props: IInputField): JSX.Element => {
+  const { title, name, value, handleChange: onChangeHandle, isInLimit } = props
+  const isInLimitExist = isInLimit !== undefined
+  return (
+    <label className={labelStyle}>
+      <p>{title}</p>
+      <input
+        type="text"
+        name={name}
+        value={value}
+        onChange={onChangeHandle}
+      /> {isInLimitExist
+					&& !isInLimit
+					&& <span className={errorStyle}>{`Should be between 1 and 6`}</span>}
+    </label>
+  )
+}
+
+interface IResultMessage {
+	isAllowed: boolean;
+	isInLimit: boolean;
+	wishResult: number;
+}
+
+const ResultMessage = (props: IResultMessage): JSX.Element => {
+  const { isAllowed, isInLimit, wishResult } = props
+  return (
+    <>
+      <p>
+        {isAllowed && isInLimit
+          ? currNumOfWishes.replace('$1', `${wishResult}`)
+          : pleaseEnterNum}
+      </p>{isAllowed && isInLimit && <p>{numOfWishesToPity.replace('$1', `${90-wishResult}`)}
+
+      </p>}
+    </>)
+}
+
 const App = (): JSX.Element => {
   const [values, setValues] = useState<IValues>({ page: '', wishes: '' })
   const [wishResult, setWishResult] = useState<number>(0)
@@ -45,31 +91,26 @@ const App = (): JSX.Element => {
   return (
     <div className={appStyle} >
       <form>
-        <label className={labelStyle}>
-          <p>{pageMessage}</p>
-          <input
-            type="text"
-            name="page"
-            value={values.page}
-            onChange={handleChange}
-          />
-        </label>
+        <InputField
+          title={pageMessage}
+          name={'page'}
+          value={values.page}
+          handleChange={handleChange}
+        />
 
-        <label className={labelStyle}>
-          <p>{wishMessage}</p>
-          <input
-            type="text"
-            name="wishes"
-            value={values.wishes}
-            onChange={handleChange}
-          /> {!isInLimit && <span className={errorStyle}>{`Should be between 1 and 6`}</span>}
-        </label>
+        <InputField
+          title={wishMessage}
+          name={'wishes'}
+          value={values.wishes}
+          handleChange={handleChange}
+          isInLimit={isInLimit}
+        />
 
-        <p>
-          {isAllowed && isInLimit
-            ? currNumOfWishes.replace('$1', `${wishResult}`)
-            : pleaseEnterNum}
-        </p>{isAllowed && isInLimit && <p>{numOfWishesToPity.replace('$1', `${90-wishResult}`)}</p>}
+        <ResultMessage
+          isAllowed={isAllowed}
+          isInLimit={isInLimit}
+          wishResult={wishResult}
+        />
       </form>
 	  </div>
   )
