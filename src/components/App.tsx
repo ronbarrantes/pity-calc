@@ -1,57 +1,12 @@
 import React, { useEffect, useState } from 'react'
 import { isNumeric, totalWishes } from '../utils/helpers'
-import { pageMessage, wishMessage, numOfWishesToPity, currNumOfWishes, pleaseEnterNum } from '../constants/messages'
+import { pageMessage, wishMessage } from '../constants/messages'
+import InputField from './InputField'
+import ResultMessage from './ResultMessage'
 import { css } from '@emotion/css'
-
 interface IValues {
 	wishes: string;
 	page: string;
-}
-
-interface IInputField {
-	title: string;
-	name: string
-	value: string;
-	isInLimit?: boolean;
-	handleChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
-
-const InputField = (props: IInputField): JSX.Element => {
-  const { title, name, value, handleChange: onChangeHandle, isInLimit } = props
-  const isInLimitExist = isInLimit !== undefined
-  return (
-    <label className={labelStyle}>
-      <p>{title}</p>
-      <input
-        type="text"
-        name={name}
-        value={value}
-        onChange={onChangeHandle}
-      /> {isInLimitExist
-					&& !isInLimit
-					&& <span className={errorStyle}>{`Should be between 1 and 6`}</span>}
-    </label>
-  )
-}
-
-interface IResultMessage {
-	isAllowed: boolean;
-	isInLimit: boolean;
-	wishResult: number;
-}
-
-const ResultMessage = (props: IResultMessage): JSX.Element => {
-  const { isAllowed, isInLimit, wishResult } = props
-  return (
-    <>
-      <p>
-        {isAllowed && isInLimit
-          ? currNumOfWishes.replace('$1', `${wishResult}`)
-          : pleaseEnterNum}
-      </p>{isAllowed && isInLimit && <p>{numOfWishesToPity.replace('$1', `${90-wishResult}`)}
-
-      </p>}
-    </>)
 }
 
 const App = (): JSX.Element => {
@@ -122,17 +77,5 @@ const appStyle = css`
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: 4rem 1fr 3rem;
-`
-
-const labelStyle = css`
-	padding-bottom: 1em;
-	display: block;
-	p{
-		padding-bottom: .2em;
-	}
-`
-
-const errorStyle = css`
-	color: red;
 `
 export default App
