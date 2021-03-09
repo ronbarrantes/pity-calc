@@ -3,7 +3,7 @@ name: S3 build and deploy CI
 on:
   # pull_request:
   push:
-    branches: [master]
+    branches: [main]
 jobs:
   build:
     runs-on: ubuntu-latest
