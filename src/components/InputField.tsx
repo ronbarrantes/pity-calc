@@ -1,5 +1,6 @@
 import React from 'react'
 import { css } from '@emotion/css'
+import { limitErrorMessage } from '../constants/messages'
 
 interface IInputField {
 	title: string;
@@ -21,8 +22,8 @@ const InputField = (props: IInputField): JSX.Element => {
         value={value}
         onChange={onChangeHandle}
       /> {isInLimitExist
-					&& !isInLimit
-					&& <span className={errorStyle}>{`Should be between 1 and 6`}</span>}
+			&& !isInLimit
+			&& <span className={errorStyle}>{limitErrorMessage}</span>}
     </label>
   )
 }
