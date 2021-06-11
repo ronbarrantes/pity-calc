@@ -10,7 +10,7 @@ interface IValues {
 }
 
 const App = (): JSX.Element => {
-  const [values, setValues] = useState<IValues>({ page: '', wishes: '' })
+  const [values, setValues] = useState<IValues>({ page: '16', wishes: '2' })
   const [wishResult, setWishResult] = useState<number>(0)
   const [isAllowed, setIsAllowed] = useState<boolean>(true)
   const [isInLimit, setIsInLimit] = useState<boolean>(true)
@@ -50,6 +50,9 @@ const App = (): JSX.Element => {
           title={pageMessage}
           name={'page'}
           value={values.page}
+          inputType={'number'}
+          min={'1'}
+          max={'16'}
           handleChange={handleChange}
         />
 
@@ -57,6 +60,9 @@ const App = (): JSX.Element => {
           title={wishMessage}
           name={'wishes'}
           value={values.wishes}
+          inputType={'range'}
+          min={'1'}
+          max={'6'}
           handleChange={handleChange}
           isInLimit={isInLimit}
         />
@@ -73,9 +79,13 @@ const App = (): JSX.Element => {
 
 const appStyle = css`
 	/* background-color: green; */
+  border: 1px solid red;
 	width: 100vw;
 	display: grid;
 	min-height: 100vh;
 	grid-template-rows: 4rem 1fr 3rem;
+
+  justify-content: center;
+  align-content: center;
 `
 export default App
