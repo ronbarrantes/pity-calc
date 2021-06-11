@@ -1,81 +1,87 @@
+// /*
+//   not currently using styles
+// */
+
 :root {
-  --grid-color: 1px dashed orange
+  --grid-color: 1px dashed orange;
+  --main-bg-color: #fbf9fe;
 }
 
-* {
-  box-sizing: border-box;
-}
+// * {
+//   box-sizing: border-box;
+// }
 
 body {
   width: 100%; // width
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  background-color: var(--main-bg-color)
 }
 
-.root {
-  // background-color: red;
-  width: 100vw;
-  display: grid;
-  // min-height: 100vh;
-  grid-template-rows: 3rem 1fr 3rem;
-}
+// .root {
+//   // background-color: red;
+//   width: 100vw;
+//   display: grid;
+//   // min-height: 100vh;
+//   grid-template-rows: 3rem 1fr 3rem;
+// }
 
-header {
-  display: grid;
-  grid-auto-flow: column;
-  // justify-items: center;
-  justify-content: center;
-  grid-gap: 1rem;
-  align-content: center;
-  border: var(--grid-color);
-}
+// header {
+//   display: grid;
+//   grid-auto-flow: column;
+//   // justify-items: center;
+//   justify-content: center;
+//   grid-gap: 1rem;
+//   align-content: center;
+//   border: var(--grid-color);
+// }
 
-.logo{
-  width: 100px;
-}
+// .logo{
+//   width: 100px;
+// }
 
-a {
-  color: black;
-  &:hover {
-    text-decoration: none;
-  }
-}
+// a {
+//   color: black;
+//   &:hover {
+//     text-decoration: none;
+//   }
+// }
 
-.content {
-  border: var(--grid-color);
-  display: grid;
-  grid-gap: 1rem;
-  justify-items: center;
-  align-content: center;
+// .content {
+//   border: var(--grid-color);
+//   display: grid;
+//   grid-gap: 1rem;
+//   justify-items: center;
+//   align-content: center;
 
-  .randomImage {
-    border-radius: 2rem;
-    filter: grayscale(100);
-    transition: filter 0.5s;
-  }
+//   .randomImage {
+//     border-radius: 2rem;
+//     filter: grayscale(100);
+//     transition: filter 0.5s;
+//   }
 
-  .randomImage:hover {
-    filter: blur(0);
-    filter: grayscale(0);
-    transition: filter 0.5s;
-  }
-}
+//   .randomImage:hover {
+//     filter: blur(0);
+//     filter: grayscale(0);
+//     transition: filter 0.5s;
+//   }
+// }
 
-footer {
-  border: var(--grid-color);
-  display: grid;
-  grid-auto-flow: column;
-  justify-content: center;
-  grid-gap: 2rem;
-  align-content: center;
-}
+// footer {
+//   border: var(--grid-color);
+//   display: grid;
+//   grid-auto-flow: column;
+//   justify-content: center;
+//   grid-gap: 2rem;
+//   align-content: center;
+// }
 
-@media screen and (min-width: 500px) {
-  header {
-    grid-gap: 3rem;
-  }
-}
+// @media screen and (min-width: 500px) {
+//   header {
+//     grid-gap: 3rem;
+//   }
+// }
 
-@media (prefers-color-scheme: dark) {
-}
+// @media (prefers-color-scheme: dark) {
+// }

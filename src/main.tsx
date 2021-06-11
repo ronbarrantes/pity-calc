@@ -2,6 +2,7 @@ import 'reset-css'
 import React from 'react'
 import ReactDOM from 'react-dom'
 import App from './components/App'
+import './styles/main.scss'
 
 const container = document.createElement('div')
 container.className = 'container'
