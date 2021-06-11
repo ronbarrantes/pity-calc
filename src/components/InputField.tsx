@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/css'
 import { limitErrorMessage } from '../constants/messages'
+import { mainColors } from '../constants/colors'
 
 interface IInputField {
 	title: string;
@@ -23,6 +24,7 @@ const InputField = (props: IInputField): JSX.Element => {
   return (
     <label className={labelStyle}>
       <p>{title}</p>
+      <span>{inputType==='number' && 'Page number '}</span>
       <input
         type={inputType}
         name={name}
@@ -34,17 +36,21 @@ const InputField = (props: IInputField): JSX.Element => {
       /> {isInLimitExist
 			&& !isInLimit
 			&& <span className={errorStyle}>{limitErrorMessage}</span>}
-      <>{inputType==='range' && value}</>
+      <span>{inputType==='range' && value}</span>
     </label>
   )
 }
 
 const labelStyle = css`
-  border: 1px dashed green;
-	padding-bottom: 1em;
 	display: block;
-	p{
-		padding-bottom: .2em;
+  border: 1px solid ${mainColors.border};
+  margin: 0 .6em;
+  padding: .5rem;
+  /* margin: 1px */
+
+	p, span{
+    margin: .2rem 0;
+    font-size: 1.2rem;
 	}
 `
 

@@ -1,6 +1,7 @@
 import React from 'react'
 import { css } from '@emotion/css'
 import { numOfWishesToPity, currNumOfWishes, pleaseEnterNum, passedPity } from '../constants/messages'
+import { mainColors } from '../constants/colors'
 
 interface IResultMessage {
 	isAllowed: boolean;
@@ -34,12 +35,16 @@ const ResultMessage = (props: IResultMessage): JSX.Element => {
 }
 
 const resultMessageStyle = css`
-  border: 1px dashed green;
-	padding-bottom: 1em;
+  border: 1px solid ${mainColors.border};
+  margin: 0 .6em;
+  padding: .5rem;
+  /* padding: .5rem 2em; */
 	display: block;
 	p{
-		padding-bottom: .2em;
-    width: 15rem;
+    margin: .5rem 0;
+    /* vertical-align: 100px; */
+    font-size: 1.2rem;
+    width: 20rem;
 	}
 `
 
