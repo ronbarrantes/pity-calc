@@ -22,14 +22,15 @@ const ResultMessage = (props: IResultMessage): JSX.Element => {
   }
 
   return (
-    <>
+    <div className={resultMessageStyle}>
       <p>
         {isAllowed && isInLimit
           ? currNumOfWishes.replace('$1', `${wishResult}`)
           : pleaseEnterNum}
       </p>
       {isAllowed && isInLimit && <p>{wishMessage(wishResult)}</p>}
-    </>)
+    </div>
+  )
 }
 
 const resultMessageStyle = css`
@@ -38,6 +39,7 @@ const resultMessageStyle = css`
 	display: block;
 	p{
 		padding-bottom: .2em;
+    width: 15rem;
 	}
 `
 
